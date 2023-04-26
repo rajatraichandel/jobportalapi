@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+  <form method="POST" enctype="multipart/form-data" action="/api/users/login">
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email">
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+    </div>
+    <div>
+        <button type="submit">login</button>
+      </div>
+  </form>
+</body>
+</html>

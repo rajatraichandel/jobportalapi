@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Post a job</title>
+</head>
+<body>
+  <h1>Post a job</h1>
+  <form method="POST" enctype="multipart/form-data" action="/api/users/login/postjob" id="post-job-form">
+    <div>
+      <label for="position">Position:</label>
+      <input type="text" id="position" name="position">
+    </div>
+    <div>
+      <label for="company_name">Company name:</label>
+      <input type="text" id="company_name" name="company_name">
+    </div>
+    <div>
+      <label for="job_description">Job description:</label>
+      <textarea id="job_description" name="job_description"></textarea>
+    </div>
+    <div>
+      <button type="submit">Post job</button>
+    </div>
+  </form>
+
+
+  <script>
+    console.log("hello");
+    const form = document.getElementById('post-job-form');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const jsontoken = localStorage.getItem('jsontoken'); // get the token from local storage
+      const position = document.getElementById('position').value;
+      const company_name = document.getElementById('company_name').value;
+      const job_description = document.getElementById('job_description').value;
+
+      const formData = new FormData();
+      formData.append('position', position);
+      formData.append('company_name', company_name);
+      formData.append('job_description', job_description);
+
+      try {
+        const response = await fetch('/api/users/login/postjob', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${jsontoken}`, // set the Authorization header with the token
+          },
+          body: formData,
+        });
+
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
